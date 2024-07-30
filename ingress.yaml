@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cm-acme-http-solver
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: trebinje.online
+    http:
+      paths:
+      - path: /.well-known/acme-challenge/*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: cm-acme-http-solver
+            port:
+              number: 8089
