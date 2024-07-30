@@ -12,6 +12,7 @@ spec:
     - "prometheus.trebinje.online"
     - "alertmanager.trebinje.online"
     - "grafana.trebinje.online"
+    - "loki.trebinje.online"
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
