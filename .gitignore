@@ -1,0 +1,23 @@
+# Local development
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Kubernetes secrets (never commit)
+*-secret.yaml
+secrets/
+
+# Helm
+*.tgz
+charts/*/charts/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
