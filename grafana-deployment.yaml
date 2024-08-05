@@ -68,6 +68,8 @@ spec:
           value: /var/lib/grafana/plugins
         - name: GF_PATHS_PROVISIONING
           value: /etc/grafana/provisioning
+        - name: GF_METRICS_ENABLED
+          value: "true"
         image: docker.io/grafana/grafana:11.1.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
