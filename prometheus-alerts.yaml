@@ -50,3 +50,15 @@ data:
         annotations:
           summary: "Volume {{ $labels.persistentvolumeclaim }} is {{ $value }}% full"
           description: "Volume {{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is more than 80% full."
+
+    - name: resources
+      interval: 60s
+      rules:
+      - alert: HighMemoryUsage
+        expr: (sum(container_memory_working_set_bytes{container!=""}) by (namespace, pod, container) / sum(container_spec_memory_limit_bytes{container!=""}) by (namespace, pod, container)) * 100 > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Container {{ $labels.namespace }}/{{ $labels.pod }}/{{ $labels.container }} high memory usage"
+          description: "Container is using {{ $value }}% of its memory limit."
