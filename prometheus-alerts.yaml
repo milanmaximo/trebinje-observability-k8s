@@ -43,8 +43,8 @@ data:
       interval: 60s
       rules:
       - alert: HighDiskUsage
-        expr: (kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes) * 100 > 80
-        for: 5m
+        expr: (kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes) * 100 > 85
+        for: 10m
         labels:
           severity: warning
         annotations:
