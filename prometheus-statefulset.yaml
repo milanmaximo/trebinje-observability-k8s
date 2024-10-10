@@ -29,6 +29,13 @@ spec:
           - --storage.tsdb.path=/prometheus
           - --storage.tsdb.wal-compression
           - --web.config.file=/etc/prometheus/web_config/web-config.yaml
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 2Gi
+          limits:
+            cpu: 2000m
+            memory: 4Gi
         ports:
         - containerPort: 9090
           name: web
