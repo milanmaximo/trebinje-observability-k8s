@@ -25,7 +25,7 @@ spec:
           - --web.enable-lifecycle
           - --web.external-url=https://prometheus.trebinje.online/prometheus
           - --web.route-prefix=/prometheus
-          - --storage.tsdb.retention.time=10d
+          - --storage.tsdb.retention.time=30d
           - --storage.tsdb.path=/prometheus
           - --storage.tsdb.wal-compression
           - --web.config.file=/etc/prometheus/web_config/web-config.yaml
