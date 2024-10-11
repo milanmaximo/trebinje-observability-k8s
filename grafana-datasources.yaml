@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+  namespace: monitoring
+data:
+  datasources.yaml: |
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      access: proxy
+      url: http://lke-monitor-kube-prometheu-prometheus:9090/prometheus
+      isDefault: true
+      editable: false
+      jsonData:
+        timeInterval: 30s
+        httpMethod: POST
