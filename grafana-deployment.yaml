@@ -118,6 +118,8 @@ spec:
           subPath: grafana.ini
         - mountPath: /var/lib/grafana
           name: storage
+        - mountPath: /etc/grafana/provisioning/datasources
+          name: datasources
       dnsPolicy: ClusterFirst
       enableServiceLinks: true
       restartPolicy: Always
@@ -137,6 +139,10 @@ spec:
         name: config
       - emptyDir: {}
         name: storage
+      - configMap:
+          defaultMode: 420
+          name: grafana-datasources
+        name: datasources
 status:
   availableReplicas: 1
   conditions:
