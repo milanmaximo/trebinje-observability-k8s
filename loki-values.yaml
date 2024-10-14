@@ -25,8 +25,11 @@ loki:
       enforce_metric_name: false
       reject_old_samples: true
       reject_old_samples_max_age: 336h
+      retention_period: 720h
       max_global_streams: 10000
       ingestion_rate_mb: 10
       ingestion_burst_size_mb: 20
+      per_stream_rate_limit: 3MB
+      per_stream_rate_limit_burst: 15MB
   podLabels:
     app: loki
