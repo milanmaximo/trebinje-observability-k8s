@@ -77,3 +77,37 @@ This stack provides full-stack observability for Kubernetes clusters:
 7. Configure TLS and Ingress
 
 For detailed deployment instructions, see DEPLOYMENT.md
+
+## Alert Rules
+
+Prometheus is configured with comprehensive alert rules for:
+
+### Infrastructure Alerts
+- `NodeNotReady`: Node unavailable for 5+ minutes
+- `NodeDiskPressure`: Node experiencing disk pressure
+
+### Pod Alerts
+- `PodCrashLooping`: Pod restarting frequently
+
+### Storage Alerts
+- `HighDiskUsage`: Volume usage >85%
+
+### Resource Alerts
+- `HighMemoryUsage`: Container using >90% of memory limit
+
+## Datasources
+
+Grafana is configured with provisioned datasources:
+
+- **Prometheus**: `http://lke-monitor-kube-prometheu-prometheus:9090/prometheus` (default)
+- **Loki**: `http://loki:3100`
+
+All datasources are configured via GitOps (ConfigMaps) and are not editable through the UI.
+
+## Security
+
+- All endpoints protected with TLS certificates from Let's Encrypt
+- Grafana admin credentials stored in Kubernetes secrets
+- Network policies restrict ingress traffic
+- Non-root container execution with security contexts
+- PodDisruptionBudgets ensure high availability
