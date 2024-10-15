@@ -111,3 +111,47 @@ All datasources are configured via GitOps (ConfigMaps) and are not editable thro
 - Network policies restrict ingress traffic
 - Non-root container execution with security contexts
 - PodDisruptionBudgets ensure high availability
+
+## Maintenance
+
+### Scaling Storage
+```bash
+# Edit storage size in values files
+kubectl apply -f prometheus-statefulset.yaml
+kubectl apply -f loki-values.yaml
+```
+
+### Updating Alert Rules
+```bash
+kubectl apply -f prometheus-alerts.yaml
+kubectl rollout restart statefulset/prometheus-lke-monitor-kube-prometheu-prometheus -n monitoring
+```
+
+### Viewing Logs
+```bash
+kubectl logs -n monitoring -l app=prometheus
+kubectl logs -n monitoring -l app=loki
+kubectl logs -n monitoring -l app.kubernetes.io/name=grafana
+```
+
+## Troubleshooting
+
+### Check Pod Status
+```bash
+kubectl get pods -n monitoring
+```
+
+### Verify Certificates
+```bash
+kubectl get certificate -n monitoring
+kubectl describe certificate monitoring-tls -n monitoring
+```
+
+### Check Ingress
+```bash
+kubectl get ingress -n monitoring
+```
+
+## License
+
+This configuration is provided as-is for personal and educational use.
