@@ -21,3 +21,15 @@ charts/*/charts/
 tmp/
 temp/
 *.tmp
+
+# Backup files
+*.bak
+*.backup
+
+# Environment-specific
+.env
+.env.local
+
+# Testing
+test-output/
+coverage/
